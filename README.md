@@ -59,7 +59,7 @@ const logger = createLogger('example', {
 })
 
 logger.on('error', () => {
-  process.stdout.write('error...')
+  process.stderr.write('error...')
 })
 
 logger.info({
