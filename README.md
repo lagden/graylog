@@ -25,7 +25,7 @@ $ npm i -S @tadashi/graylog
 
 ### Environment variables available
 
-- TADASHI_CONSOLE_LOG = 1
+- TADASHI_GRAYLOG = 1
 
 
 ### createLogger(name, \[options\]): Logger
@@ -56,6 +56,10 @@ import createLogger from '@tadashi/graylog'
 
 const logger = createLogger('example', {
   host: '127.0.0.1'
+})
+
+logger.on('error', () => {
+  process.stdout.write('error...')
 })
 
 logger.info({

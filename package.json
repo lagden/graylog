@@ -1,6 +1,6 @@
 {
   "name": "@tadashi/graylog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Send logs to graylog",
   "type": "module",
   "main": "src/graylog.js",
@@ -33,7 +33,7 @@
   "scripts": {
     "eslint": "eslint --config .eslintrc.yml --ext .js --ignore-path .gitignore .",
     "pretest": "npm run eslint",
-    "test": "env DEBUG=@tadashi/graylog:* c8 --reporter=text --reporter=text-summary --reporter=lcov ava --tap"
+    "test": "c8 --reporter=text --reporter=text-summary --reporter=lcov ava --tap"
   },
   "dependencies": {
     "bunyan": "1.8.15",
@@ -43,9 +43,10 @@
   "devDependencies": {
     "@babel/core": "7.16.0",
     "@babel/eslint-parser": "7.16.0",
+    "@tadashi/sleep": "2.0.1",
     "ava": "3.15.0",
     "c8": "7.10.0",
-    "eslint": "8.1.0",
+    "eslint": "8.2.0",
     "eslint-config-xo": "0.39.0",
     "eslint-plugin-unicorn": "38.0.0"
   },
