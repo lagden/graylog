@@ -1,6 +1,7 @@
 // import sleep from '@tadashi/sleep'
 import test from 'ava'
 import createLogger from '../src/graylog.js'
+import ConsoleStream from '../src/console.js'
 
 const logger = createLogger('unit_test')
 logger
@@ -19,7 +20,7 @@ const _log = data => {
 	m.bind(logger)(obj, message)
 }
 
-test.serial('logger', async t => {
+test('logger', async t => {
 	_log({
 		level: 'notice',
 		message: 'Apenas um show 1',
@@ -35,5 +36,12 @@ test.serial('logger', async t => {
 
 	// await sleep(3)
 
+	t.pass('ok')
+})
+
+test('console', t => {
+	const _console = new ConsoleStream()
+	_console.write({})
+	_console.write({level: 50, time: new Date()})
 	t.pass('ok')
 })

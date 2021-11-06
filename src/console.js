@@ -10,15 +10,10 @@ const colorMap = {
 
 class ConsoleStream {
 	write(data) {
-		const level = bunyan.nameFromLevel[data.level] ?? 'info'
-		const _log = console[level] ?? console.log
-		const _color = pc[colorMap?.[level] ?? 'blue']
-		_log(
-			'[%s] %s: %s',
-			_color(data.time.toISOString()),
-			_color(level),
-			JSON.stringify(data, undefined, '  '),
-		)
+		const level = bunyan.nameFromLevel[data?.level] ?? 'info'
+		const _color = pc[colorMap?.[level]]
+		const _error = ['fatal', 'error']
+		process[_error.includes(level) ? 'stderr' : 'stdout'].write(`[${_color(data?.time?.toISOString() ?? new Date().toISOString())}] ${_color(level)}: ${JSON.stringify(data, undefined, '  ')}\n`)
 	}
 }
 
