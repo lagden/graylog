@@ -1,4 +1,3 @@
-// import sleep from '@tadashi/sleep'
 import test from 'ava'
 import createLogger from '../src/graylog.js'
 import ConsoleStream from '../src/console.js'
@@ -20,7 +19,7 @@ const _log = data => {
 	m.bind(logger)(obj, message)
 }
 
-test('logger', async t => {
+test('logger', t => {
 	_log({
 		level: 'notice',
 		message: 'Apenas um show 1',
@@ -33,8 +32,6 @@ test('logger', async t => {
 		level: 'warn',
 		message: 'Apenas um show 3',
 	})
-
-	// await sleep(3)
 
 	t.pass('ok')
 })
