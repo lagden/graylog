@@ -14,13 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
-
-    services:
-      rabbitmq:
-        image: rabbitmq:3.9-alpine
-        ports:
-          - 5672:5672
+        node-version: [16.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,9 +31,6 @@ jobs:
 
       - name: Run test
         run: npm test
-        env:
-          TADASHI_AMQP_URL: amqp://127.0.0.1:5672
-          TADASHI_AMQP_QUEUE: test
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
