@@ -3,10 +3,6 @@ import createLogger from '../src/graylog.js'
 import ConsoleStream from '../src/console.js'
 
 const logger = createLogger('unit_test')
-logger
-	.on('error', () => {
-		process.stdout.write('error...')
-	})
 
 const _log = data => {
 	const {
@@ -40,5 +36,6 @@ test('console', t => {
 	const _console = new ConsoleStream()
 	_console.write({})
 	_console.write({level: 50, time: new Date()})
+
 	t.pass('ok')
 })

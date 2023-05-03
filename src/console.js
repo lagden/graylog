@@ -1,19 +1,21 @@
+import process from 'node:process'
 import bunyan from 'bunyan'
-import pc from 'picocolors'
+import {cyan, yellow, red, grey} from 'kleur/colors'
 
 const colorMap = {
-	info: 'blue',
-	warn: 'yellow',
-	fatal: 'red',
-	error: 'red',
+	info: cyan,
+	warn: yellow,
+	fatal: red,
+	error: red,
 }
 
 class ConsoleStream {
 	write(data) {
 		const level = bunyan.nameFromLevel[data?.level] ?? 'info'
-		const _color = pc[colorMap?.[level]]
-		const _error = ['fatal', 'error']
-		process[_error.includes(level) ? 'stderr' : 'stdout'].write(`[${_color(data?.time?.toISOString() ?? new Date().toISOString())}] ${_color(level)}: ${JSON.stringify(data, undefined, '  ')}\n`)
+		const _color = colorMap?.[level] ?? grey
+		const _error = new Set(['fatal', 'error'])
+		process[_error.has(level) ? 'stderr' : 'stdout']
+			.write(`[${_color(data?.time?.toISOString() ?? new Date().toISOString())}] ${_color(level)}: ${JSON.stringify(data, undefined, '  ')}\n`)
 	}
 }
 
